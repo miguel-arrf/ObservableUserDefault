@@ -19,8 +19,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        // Depend on the latest Swift 5.9 prerelease of SwiftSyntax
-        .package(url: "https://github.com/apple/swift-syntax.git", from: "509.0.0-swift-5.9-DEVELOPMENT-SNAPSHOT-2023-04-25-b"),
+        .package(url: "https://github.com/sjavora/swift-syntax-xcframeworks.git", from: "509.0.2"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -29,11 +28,9 @@ let package = Package(
         .macro(
             name: "ObservableUserDefaultMacros",
             dependencies: [
-                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
-                .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
+                .product(name: "SwiftSyntaxWrapper", package: "swift-syntax-xcframeworks"),
             ]
         ),
-
         // Library that exposes a macro as part of its API, which is used in client programs.
         .target(name: "ObservableUserDefault", dependencies: ["ObservableUserDefaultMacros"]),
 
@@ -45,7 +42,7 @@ let package = Package(
             name: "ObservableUserDefaultTests",
             dependencies: [
                 "ObservableUserDefaultMacros",
-                .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
+                .product(name: "SwiftSyntaxWrapper", package: "swift-syntax-xcframeworks"),
             ]
         ),
     ]
