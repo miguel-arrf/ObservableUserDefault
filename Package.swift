@@ -36,14 +36,5 @@ let package = Package(
 
         // A client of the library, which is able to use the macro in its own code.
         .executableTarget(name: "ObservableUserDefaultClient", dependencies: ["ObservableUserDefault"]),
-
-        // A test target used to develop the macro implementation.
-        .testTarget(
-            name: "ObservableUserDefaultTests",
-            dependencies: [
-                "ObservableUserDefaultMacros",
-                .product(name: "SwiftSyntaxWrapper", package: "swift-syntax-xcframeworks"),
-            ]
-        ),
     ]
 )
